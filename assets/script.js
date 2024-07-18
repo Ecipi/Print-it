@@ -23,7 +23,7 @@ const arrowLeft = document.getElementById('arrow_left');
 const arrowRight = document.getElementById('arrow_right');
 const slideImg = document.getElementById('slide');
 const slideTagLine = document.querySelector('#banner p');
-let dots = document.getElementsByClassName('dot');
+const dots = document.getElementsByClassName('dot');
 
 i = 0
 
