@@ -27,18 +27,28 @@ const slideTagLine = document.querySelector('#banner p');
 
 i = 0
 
-arrowLeft.addEventListener('click', () => {
-	console.log("Vous avez cliqué sur la flèche gauche");
-	i--
-	console.log(i);
+function slideUp() {
+	i++
+	if (i >= slides.length) {
+		i = 0
+	}
 	slideImg.setAttribute('src', 'assets/images/slideshow/' + slides[i].image);
 	slideTagLine.innerHTML = slides[i].tagLine;
+}
+
+function slideDown() {
+	i--
+	if (i < 0) {
+		i = slides.length - 1
+	}
+	slideImg.setAttribute('src', 'assets/images/slideshow/' + slides[i].image);
+	slideTagLine.innerHTML = slides[i].tagLine;
+}
+
+arrowLeft.addEventListener('click', () => {
+	slideDown()
 });
 
 arrowRight.addEventListener('click', () => {
-	console.log("Vous avez cliqué sur la flèche droite");
-	i++
-	console.log(i);
-	slideImg.setAttribute('src', 'assets/images/slideshow/' + slides[i].image);
-	slideTagLine.innerHTML = slides[i].tagLine;
+	slideUp()
 });
