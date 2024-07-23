@@ -17,42 +17,57 @@ const slides = [
 	}
 ]
 
+// Ajout des points de navigation et du dot_selected sur le premier point
+const dotContainer = document.querySelector('.dots');
+for (let slide = 0; slide < slides.length; slide++) {
+	const span = document.createElement('span');
+	span.classList.add('dot');
+	if (slide === 0) {
+		span.classList.add('dot_selected');
+	}
+	dotContainer.appendChild(span);
+}
 
-
-const arrowLeft = document.getElementById('arrow_left');
-const arrowRight = document.getElementById('arrow_right');
-const slideImg = document.getElementById('slide');
+// Initialisation des variables
+let i = 0;
+const dot = document.querySelectorAll('.dot');
+const arrowLeft = document.querySelector('.arrow_left');
+const arrowRight = document.querySelector('.arrow_right');
+const slideImg = document.querySelector('.banner-img');
 const slideTagLine = document.querySelector('#banner p');
-const dots = document.getElementsByClassName('dot');
 
-i = 0
+// Suppression de la classe 'dot_selected' et ajout de la classe 'dot_selected' sur le point correspondant au slide actuel. Changement de l'image et du texte du tagLine
+function changeSlide () {
+	document.querySelector('.dot_selected').classList.remove('dot_selected');
+	slideImg.src = 'assets/images/slideshow/' + slides[i].image;
+	slideTagLine.innerHTML = slides[i].tagLine;
+	dot[i].classList.add('dot_selected')
+}
 
+// +1 sur i, si i est supérieur ou égal à la longueur du tableau slides, i est réinitialisé à 0 et appel de la fonction changeSlide
 function slideUp() {
-	dots[i].classList.remove('dot_selected')
-	i++
+	i++;
 	if (i >= slides.length) {
 		i = 0
-	}
-	slideImg.setAttribute('src', 'assets/images/slideshow/' + slides[i].image);
-	slideTagLine.innerHTML = slides[i].tagLine;
-	dots[i].classList.add('dot_selected')
-}
+	};
+	changeSlide ()
+};
 
+// -1 sur i, si i est inférieur à 0, i est réinitialisé à la longueur du tableau slides - 1 et appel de la fonction changeSlide
 function slideDown() {
-	dots[i].classList.remove('dot_selected')
-	i--
+	i--;
 	if (i < 0) {
 		i = slides.length - 1
-	}
-	slideImg.setAttribute('src', 'assets/images/slideshow/' + slides[i].image);
-	slideTagLine.innerHTML = slides[i].tagLine;
-	dots[i].classList.add('dot_selected')
-}
+	};
+	changeSlide ()
+};
 
+// Appel de la fonction slideDown lors du clic sur la flèche de gauche
 arrowLeft.addEventListener('click', () => {
 	slideDown()
 });
 
+// Appel de la fonction slideUp lors du clic sur la flèche de droite
 arrowRight.addEventListener('click', () => {
 	slideUp()
 });
