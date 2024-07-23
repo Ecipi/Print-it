@@ -24,7 +24,7 @@ for (let slide = 0; slide < slides.length; slide++) {
 	span.classList.add('dot');
 	if (slide === 0) {
 		span.classList.add('dot_selected');
-	}
+	};
 	dotContainer.appendChild(span);
 }
 
